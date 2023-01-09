@@ -7,6 +7,7 @@ Class Utilisateur
     public int $annee_naissance = 0;
     public int $score = 0;
     public string $ville = "";
+    public array $historique_scores = [];
 
     public function age()
     {
@@ -28,6 +29,16 @@ Class Utilisateur
         </div>";
 
     }
+
+    public function incrementeScore() {
+        $this->score++;
+    }
+
+    public function ajouterScore() {
+        $this->historique_scores[] = $this->score;
+        // Réinitialisation du score
+        $this->score = 0;
+    }
 }
 
 
@@ -39,5 +50,14 @@ $utilisateur->email = "toto@titi.com";
 $utilisateur->annee_naissance = 1980;
 $utilisateur->score = 100;
 $utilisateur->ville = "Paris";
+
+$utilisateur->incrementeScore();
+$utilisateur->ajouterScore();
+
+$utilisateur->score = 42;
+$utilisateur->ajouterScore();
+
+$utilisateur->score = 123;
+$utilisateur->ajouterScore();
 
 $utilisateur->afficher();

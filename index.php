@@ -6,7 +6,10 @@ Class Utilisateur
     public string $email = "";
     public int $annee_naissance = 0;
     public int $score = 0;
+    public string $ville = "";
 }
+
+
 
 $utilisateur = new Utilisateur();
 $utilisateur->nom = "Doe";
@@ -14,5 +17,14 @@ $utilisateur->prenom = "John";
 $utilisateur->email = "toto@titi.com";
 $utilisateur->annee_naissance = 1980;
 $utilisateur->score = 100;
+$utilisateur->ville = "Paris";
 
-echo $utilisateur->nom;
+
+echo "<div class=\"utilisateur\">
+    <h1>Utilisateur</h1>
+    <p>Nom : $utilisateur->nom</p>
+    <p>Prénom : $utilisateur->prenom</p>
+    <p>Ville : $utilisateur->ville</p>
+    <p>Mail : $utilisateur->email</p>
+    <p>Score : $utilisateur->score</p>
+</div>";

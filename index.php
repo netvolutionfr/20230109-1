@@ -45,6 +45,10 @@ Class Utilisateur
         // Réinitialisation du score
         $this->score = 0;
     }
+
+    public function afficherJson() {
+        echo json_encode($this);
+    }
 }
 
 
@@ -67,3 +71,7 @@ $utilisateur->score = 123;
 $utilisateur->ajouterScore();
 
 $utilisateur->afficher();
+
+echo "<pre>";
+$utilisateur->afficherJson();
+echo "</pre>";

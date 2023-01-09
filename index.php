@@ -26,6 +26,12 @@ Class Utilisateur
             <p>Mail : $this->email</p>
             <p>Score : $this->score</p>
             <p>Age : $age ans</p>
+            <p>Historique des scores : ";
+        echo "<ul>";
+        foreach ($this->historique_scores as $score) {
+            echo "<li>$score</li>";
+        }
+        echo "</ul>
         </div>";
 
     }

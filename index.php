@@ -8,6 +8,7 @@ Class Utilisateur
     public int $score = 0;
     public string $ville = "";
     public array $historique_scores = [];
+    public string $password = "";
 
     public function age()
     {
@@ -49,6 +50,14 @@ Class Utilisateur
     public function afficherJson() {
         echo json_encode($this);
     }
+
+    public function setPassword($password) {
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function checkPassword($password) {
+        return password_verify($password, $this->password);
+    }
 }
 
 
@@ -70,7 +79,13 @@ $utilisateur->ajouterScore();
 $utilisateur->score = 123;
 $utilisateur->ajouterScore();
 
-$utilisateur->afficher();
+$utilisateur->setPassword("123456");
+
+if ($utilisateur->checkPassword("flkgjdlkgfj")) {
+    echo "Mot de passe correct";
+} else {
+    echo "Mot de passe incorrect";
+}
 
 echo "<pre>";
 $utilisateur->afficherJson();

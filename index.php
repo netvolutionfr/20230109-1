@@ -49,29 +49,43 @@ Class Utilisateur
     public function afficherJson() {
         echo json_encode($this);
     }
+
+    public function save() {
+        $data = [
+            "nom" => $this->nom,
+            "prenom" => $this->prenom,
+            "email" => $this->email,
+            "annee_naissance" => $this->annee_naissance,
+            "score" => $this->score,
+            "ville" => $this->ville,
+            "historique_scores" => $this->historique_scores
+        ];
+        $json = json_encode($data);
+        file_put_contents("data.json", $json);
+    }
+
+    public function load() {
+        $json = file_get_contents("data.json");
+        $data = json_decode($json, true);
+        $this->nom = $data["nom"];
+        $this->prenom = $data["prenom"];
+        $this->email = $data["email"];
+        $this->annee_naissance = $data["annee_naissance"];
+        $this->score = $data["score"];
+        $this->ville = $data["ville"];
+        $this->historique_scores = $data["historique_scores"];
+    }
 }
 
 
 
 $utilisateur = new Utilisateur();
-$utilisateur->nom = "Doe";
-$utilisateur->prenom = "John";
-$utilisateur->email = "toto@titi.com";
-$utilisateur->annee_naissance = 1980;
-$utilisateur->score = 100;
-$utilisateur->ville = "Paris";
-
-$utilisateur->incrementeScore();
-$utilisateur->ajouterScore();
-
-$utilisateur->score = 42;
-$utilisateur->ajouterScore();
-
-$utilisateur->score = 123;
-$utilisateur->ajouterScore();
+$utilisateur->load();
 
 $utilisateur->afficher();
 
 echo "<pre>";
 $utilisateur->afficherJson();
 echo "</pre>";
+
+$utilisateur->save();

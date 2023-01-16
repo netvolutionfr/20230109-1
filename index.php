@@ -66,7 +66,8 @@ Class Utilisateur
             "annee_naissance" => $this->annee_naissance,
             "score" => $this->score,
             "ville" => $this->ville,
-            "historique_scores" => $this->historique_scores
+            "historique_scores" => $this->historique_scores,
+            "password" => $this->password
         ];
         $json = json_encode($data);
         file_put_contents("data.json", $json);
@@ -82,6 +83,7 @@ Class Utilisateur
         $this->score = $data["score"];
         $this->ville = $data["ville"];
         $this->historique_scores = $data["historique_scores"];
+        $this->password = $data["password"];
     }
 }
 

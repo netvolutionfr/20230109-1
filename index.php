@@ -50,6 +50,14 @@ Class Utilisateur
         echo json_encode($this);
     }
 
+    public function setPassword($password) {
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function checkPassword($password) {
+        return password_verify($password, $this->password);
+    }
+
     public function save() {
         $data = [
             "nom" => $this->nom,
@@ -82,7 +90,13 @@ Class Utilisateur
 $utilisateur = new Utilisateur();
 $utilisateur->load();
 
-$utilisateur->afficher();
+$utilisateur->setPassword("123456");
+
+if ($utilisateur->checkPassword("flkgjdlkgfj")) {
+    echo "Mot de passe correct";
+} else {
+    echo "Mot de passe incorrect";
+}
 
 echo "<pre>";
 $utilisateur->afficherJson();
